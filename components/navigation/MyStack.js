@@ -6,10 +6,12 @@ import Note from './screen/note';
 const Stack = createStackNavigator();
 
 export const MyStack = () => {
-    return(
-        <Stack.Navigator>
-            <Stack.Screen name="Notes" component={NoteList} />
-            <Stack.Screen name="Add notes" component={Note} />
-        </Stack.Navigator>
-    );
-}
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Notes" component={NoteList} />
+      <Stack.Screen name="Add notes" component={Note} />
+    </Stack.Navigator>
+  );
+};
+
+export default MyStack;

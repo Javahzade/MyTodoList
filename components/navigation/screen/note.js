@@ -1,26 +1,37 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, ScrollView, Button, TextInput} from 'react-native';
+import {View, TouchableOpacity, Text, TextInput} from 'react-native';
 import {connect} from 'react-redux';
 import {addNoteText} from '../../redux/action';
+import {noteTextStyle} from './style';
 
-const Note = (props) => {
-    const [noteText, setNoteText] = useState('');
-    return (
-        <View>
-            <TextInput 
-            onChangeText={text => setNoteText(text) }
-            placeHolder="Type your Note"
-             />
-            <Button title="SAVE" onPress={() => props.addNoteText(noteText)} />
+const Note = ({navigation, addNoteText}) => {
+  const [noteText, setNoteText] = useState('');
+  const {text, button} = noteTextStyle;
+  const saveAndGo = () => {
+    addNoteText(noteText);
+    navigation.navigate('Notes');
+  };
 
-        </View>
-    );
-}
+  return (
+    <View>
+      <TextInput
+        onChangeText={text => setNoteText(text)}
+        placeHolder="Type your Note"
+      />
+      <TouchableOpacity onPress={saveAndGo} style={button}>
+        <Text style={text}>✓</Text>
+      </TouchableOpacity>
+    </View>
+  );
+};
 
 const mapDispatchToProps = dispatch => {
-    return {
-        addNoteText: text => dispatch(addNoteText(text)),
-    }
-}
+  return {
+    addNoteText: text => dispatch(addNoteText(text)),
+  };
+};
 
-export default connect(null, mapDispatchToProps)(Note);
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Note);
