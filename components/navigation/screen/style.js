@@ -3,59 +3,58 @@ import {StyleSheet} from 'react-native';
 export const noteStyle = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F8F7ED',
   },
   button: {
     width: 80,
     height: 80,
-    borderRadius: 40,
-    alignSelf: 'flex-end',
+    borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 20,
-    marginBottom: 20,
     backgroundColor: 'tomato',
+    position: 'absolute',
+    bottom: 20,
+    right: 10,
   },
   text: {
     fontSize: 80,
-    color: 'white',
   },
 });
 
 export const noteTextStyle = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#EFE5D5',
   },
   button: {
     width: 80,
     height: 80,
     borderRadius: 40,
-    alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: 20,
-    marginBottom: 20,
     backgroundColor: '#7ec850',
+    position: 'absolute',
+    bottom: 20,
+    right: 10,
   },
   text: {
-    fontSize: 40,
-    color: 'white',
+    fontSize: 20,
+    fontStyle: 'italic',
   },
 });
 
 export const noteScrollViewStyle = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: 'row', 
-    backgroundColor: 'white',
-    borderWidth: 1,
+    backgroundColor: '#EFE5D5',
     padding: 10,
     margin: 5,
+    marginBottom: 0,
+    borderWidth: 2,
+    borderRadius: 20,
   },
   text: {
+    flex: 1,
     fontSize: 25,
+    fontStyle: 'italic',
   },
-  editor: {
-
-  },
-
 });
