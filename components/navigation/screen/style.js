@@ -41,3 +41,21 @@ export const noteTextStyle = StyleSheet.create({
     color: 'white',
   },
 });
+
+export const noteScrollViewStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'row', 
+    backgroundColor: 'white',
+    borderWidth: 1,
+    padding: 10,
+    margin: 5,
+  },
+  text: {
+    fontSize: 25,
+  },
+  editor: {
+
+  },
+
+});
