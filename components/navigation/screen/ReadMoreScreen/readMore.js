@@ -33,7 +33,7 @@ const ReadMore = ({navigation, route}) => {
           navigation.navigate(Notes);
           route.params.removeNote(route.params.data, route.params.index);
         }}>
-        <Text>Delete</Text>
+        <Text style={{fontSize: 40}}>X</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={saveButton}
@@ -41,7 +41,7 @@ const ReadMore = ({navigation, route}) => {
           route.params.updateNote(route.params.data, update);
           navigation.navigate(Notes);
         }}>
-        <Text>Edit</Text>
+        <Text style={{fontSize: 40}}>✓</Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
