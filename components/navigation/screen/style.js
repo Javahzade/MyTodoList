@@ -5,6 +5,10 @@ export const noteStyle = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F8F7ED',
   },
+  search: {
+    flex: 1,
+    height: 40,
+  },
   button: {
     width: 80,
     height: 80,

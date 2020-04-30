@@ -13,7 +13,9 @@ import {readMoreStyle} from '../style';
 const ReadMore = ({navigation, route}) => {
   const [update, setUpdate] = useState(route.params.data);
   const {container, saveButton, deleteButton, text} = readMoreStyle;
-  const {Notes} = STRINGS;
+  const {Notes, DELETE, DELETE_TEXT, ALERT_1, ALERT_2} = STRINGS;
+  
+    
   return (
     <SafeAreaView style={container}>
       <KeyboardAvoidingView>

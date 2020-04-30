@@ -20,3 +20,10 @@ export const editNoteAction = (previous, next) => {
     next,
   };
 };
+
+export const filterNoteListAction = search => {
+  return {
+    type: 'FILTER',
+    filterNoteText: search,
+  }
+}

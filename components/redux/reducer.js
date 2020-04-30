@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 let initialState = {
   noteText: [],
+  filterNoteText: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ export const reducer = (state = initialState, action) => {
         noteText: [action.noteText, ...state.noteText],
       };
     case 'DELETE':
+      console.log(action)
       delete state.noteText[action.index];
       return {
         ...state,
@@ -30,6 +32,12 @@ export const reducer = (state = initialState, action) => {
           }
           return item;
         }),
+      };
+    case 'FILTER':  
+    return {
+        filterNoteText: state.noteText.filter(search => {
+            return state.noteText.indexOf(search) != -1
+          }),
       };
     default:
       return state;
