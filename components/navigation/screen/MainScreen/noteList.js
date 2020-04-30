@@ -34,7 +34,6 @@ const NoteList = ({navigation, noteText, deleteNote, editNote}) => {
             removeNote={removeNote}
           />
         )}
-        keyExtractor={item => item.id}
       />
       <TouchableOpacity style={button} onPress={addNewNote}>
         <Text style={text}>+</Text>
