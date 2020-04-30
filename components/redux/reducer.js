@@ -13,12 +13,12 @@ export const reducer = (state = initialState, action) => {
         noteText: [action.noteText, ...state.noteText],
       };
     case 'DELETE':
-      console.log(state.noteText.indexOf(action.noteText));
       delete state.noteText[action.index];
-      console.log('ACTION INDEX ==>' + action.index);
       return {
         ...state,
-        noteText: state.noteText,
+        noteText: state.noteText.filter(a => {
+          return typeof a !== 'undefined';
+        }),
       };
 
     case 'EDIT':

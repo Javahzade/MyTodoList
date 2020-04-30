@@ -11,7 +11,6 @@ import {STRINGS} from '../../../src/constants/index';
 import {readMoreStyle} from '../style';
 
 const ReadMore = ({navigation, route}) => {
-  console.log(route);
   const [update, setUpdate] = useState(route.params.data);
   const {container, saveButton, deleteButton, text} = readMoreStyle;
   const {Notes} = STRINGS;
