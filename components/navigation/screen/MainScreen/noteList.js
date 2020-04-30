@@ -1,32 +1,48 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView, TouchableOpacity, Text, TextInput, FlatList, Button} from 'react-native';
+import {
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+  TextInput,
+  FlatList,
+  Button,
+  View,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {noteStyle} from '../style';
 import NoteScrollView from './noteScrollView';
-import {deleteNoteAction, editNoteAction, filterNoteListAction} from '../../../redux/action';
+import {
+  deleteNoteAction,
+  editNoteAction,
+  filterNoteListAction,
+} from '../../../redux/action';
 import {STRINGS} from '../../../src/constants/index';
 
-const NoteList = ({navigation, noteText, filterNoteText, deleteNote, editNote, filterNote}) => {
+const NoteList = ({
+  navigation,
+  noteText,
+  filterNoteText,
+  deleteNote,
+  editNote,
+  filterNote,
+}) => {
   const [searchArr, setSearchArr] = useState('');
   const noteData = noteText;
   const filterData = filterNoteText;
   const [data, setData] = useState(noteData);
-  const {container, search, button, text} = noteStyle;
+  const {container, search, searchButton, button, text} = noteStyle;
   const {AddNotes, ReadNote, Search_Type} = STRINGS;
 
   useEffect(() => {
-    if (filterNoteText == ''){
-      console.log('NoteText')
-      setData(noteData)
-    }else {
-      console.log('FILTER')
-      setData(filterData)
+    if (filterNoteText == '') {
+      setData(noteData);
+    } else {
+      setData(filterData);
     }
-  })
+  }, [filterNoteText, noteData, filterData]);
 
   const addNewNote = () => {
     navigation.navigate(AddNotes);
-    
   };
   const readMore = (data, index) => {
     navigation.navigate(ReadNote, {data, index, removeNote, updateNote});
@@ -37,20 +53,26 @@ const NoteList = ({navigation, noteText, filterNoteText, deleteNote, editNote, f
   const updateNote = (previous, next) => {
     editNote(previous, next);
   };
-  const isSearchPressed = (searchArr) => {
-    filterNote(searchArr)  
-  }
-  
-  console.log(data)
+  const isSearchPressed = () => {
+    filterNote(searchArr);
+    setSearchArr('');
+  };
+
   return (
     <SafeAreaView style={container}>
-      <TextInput
-      style={search}
-      onChangeText={type => setSearchArr(type)}
-      placeholder={Search_Type}
-      >
-      </TextInput>
-      <Button title='search' onPress={isSearchPressed} />
+      <View style={{flexDirection: 'row'}}>
+        <TextInput
+          style={search}
+          maxLength={30}
+          onChangeText={type => setSearchArr(type)}
+          value={searchArr}
+          placeholder={Search_Type}
+        />
+        <TouchableOpacity style={searchButton} onPress={isSearchPressed}>
+          <Text style={{fontSize: 30}}>🔍</Text>
+        </TouchableOpacity>
+      </View>
+
       <FlatList
         data={data}
         renderItem={({item}) => (
@@ -61,7 +83,7 @@ const NoteList = ({navigation, noteText, filterNoteText, deleteNote, editNote, f
             removeNote={removeNote}
           />
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={index => index}
       />
       <TouchableOpacity style={button} onPress={addNewNote}>
         <Text style={text}>+</Text>
@@ -87,7 +109,7 @@ const mapDispatchToProps = dispatch => {
     },
     filterNote(search) {
       dispatch(filterNoteListAction(search));
-    }
+    },
   };
 };
 

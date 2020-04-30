@@ -14,11 +14,14 @@ export const reducer = (state = initialState, action) => {
         noteText: [action.noteText, ...state.noteText],
       };
     case 'DELETE':
-      console.log(action)
       delete state.noteText[action.index];
+      delete state.filterNoteText[action.index];
       return {
         ...state,
         noteText: state.noteText.filter(a => {
+          return typeof a !== 'undefined';
+        }),
+        filterNoteText: state.filterNoteText.filter(a => {
           return typeof a !== 'undefined';
         }),
       };
@@ -33,11 +36,17 @@ export const reducer = (state = initialState, action) => {
           return item;
         }),
       };
-    case 'FILTER':  
-    return {
+    case 'FILTER':
+      return {
+        ...state,
         filterNoteText: state.noteText.filter(search => {
-            return state.noteText.indexOf(search) != -1
-          }),
+          /* return state.noteText.indexOf(search) != -1; */
+          if (action.filterNoteText == '') {
+            return null;
+          } else {
+            return search.includes(action.filterNoteText) ? search : null;
+          }
+        }),
       };
     default:
       return state;

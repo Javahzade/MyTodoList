@@ -7,7 +7,16 @@ export const noteStyle = StyleSheet.create({
   },
   search: {
     flex: 1,
-    height: 40,
+    margin: 5,
+    borderWidth: 2,
+    borderRadius: 20,
+    fontSize: 20,
+  },
+  searchButton: {
+    borderRadius: 50,
+    position: 'absolute',
+    top: 10,
+    right: 20,
   },
   button: {
     width: 80,
